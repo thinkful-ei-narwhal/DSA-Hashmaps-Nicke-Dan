@@ -88,6 +88,24 @@ console.log(permPal('north'));
 
 // 6)
 
+const sort = function(word) {
+  return word.split('').sort().join('');
+};
+
+function sortedAna(arr) {
+  
+  const groups = new Map();
+  arr.forEach(w => {
+    const sorted = sort(w);
+    const group = groups.get(sorted) || [];
+    groups.set(sorted, [...group, w]); // we mutate the value with the arrays
+  });
+
+  return Array.from(groups.values());
+}
+
+console.log(sortedAna(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
+
 
 
 

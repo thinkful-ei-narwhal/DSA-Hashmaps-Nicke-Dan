@@ -31,7 +31,7 @@ class HashMap {
     //Find the slot where this key should be in
     const index = this._findSlot(key);
 
-    if (!this._hashTable[index]) {
+    if (!this._hashTable[index]) { 
       this.length++;
     }
     this._hashTable[index] = {
@@ -60,7 +60,7 @@ class HashMap {
       const index = i % this._capacity;
       const slot = this._hashTable[index];
       if (slot === undefined || (slot.key === key && !slot.DELETED)) {
-        return index;
+        return index; //
       }
     }
   }
