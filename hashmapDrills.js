@@ -1,5 +1,5 @@
-const HashMap = require("./hashmaps.js");
-const HashMapLinked = require("./hashmapsLinked.js");
+const HashMap = require('./hashmaps.js');
+const HashMapLinked = require('./hashmapsLinked.js');
 
 function main() {
   // HashMap.MAX_LOAD_RATIO = 0.5;
@@ -25,18 +25,18 @@ function main() {
   HashMapLinked.MAX_LOAD_RATIO = 0.5;
   HashMapLinked.SIZE_RATIO = 3;
   const lotr = new HashMapLinked();
-  lotr.set("Hobbit", "Bilbo");
-  lotr.set("Hobbit", "Frodo");
-  lotr.set("Wizard", "Gandalf");
-  lotr.set("Human", "Aragorn");
-  lotr.set("Elf", "Legolas");
-  lotr.set("Maiar", "The Necromancer");
-  lotr.set("Maiar", "Sauron");
-  lotr.set("RingBearer", "Gollum");
-  lotr.set("LadyOfLight", "Galadriel");
-  lotr.set("HalfElven", "Arwen");
-  lotr.set("Ent", "Treebeard");
-  console.log("Linked Hash Map ", lotr);
+  lotr.set('Hobbit', 'Bilbo');
+  lotr.set('Hobbit', 'Frodo');
+  lotr.set('Wizard', 'Gandalf');
+  lotr.set('Human', 'Aragorn');
+  lotr.set('Elf', 'Legolas');
+  lotr.set('Maiar', 'The Necromancer');
+  lotr.set('Maiar', 'Sauron');
+  lotr.set('RingBearer', 'Gollum');
+  lotr.set('LadyOfLight', 'Galadriel');
+  lotr.set('HalfElven', 'Arwen');
+  lotr.set('Ent', 'Treebeard');
+  console.log('Linked Hash Map ', lotr);
 }
 
 // 2) It outputs 20, 10.  Each time the key gets overwritten with a new value
@@ -51,7 +51,7 @@ function removeDup(str) {
   HashMap.SIZE_RATIO = 3;
   const hash = new HashMap();
 
-  let final = "";
+  let final = '';
   for (let i = 0; i < str.length; i++) {
     try {
       hash.get(str[i]);
@@ -96,72 +96,25 @@ function permPal(str) {
 // console.log(permPal('north'));
 
 // 6)
-function anagrammer(array) {
-  const hashArr = [];
-  for (let i = 0; i < array.length; i++) {
-    HashMap.MAX_LOAD_RATIO = 0.5;
-    HashMap.SIZE_RATIO = 3;
-    const hash = new HashMap();
+const sort = function (word) {
+  return word.split('').sort().join('');
+};
 
-    //inner loop checking letters in each string
-    for (let y = 0; y < array[i].length; y++) {
-      try {
-        let val = hash.get(array[i].charAt(y));
-        hash.set(array[i].charAt(y), val + 1);
-      } catch (e) {
-        hash.set(array[i].charAt(y), 1);
-      }
-    }
-    hashArr.push(hash);
-  }
-
-  const sort = function (word) {
-    return word.split("").sort().join("");
-  };
-
-  function sortedAna(arr) {
-    const groups = new Map();
-    arr.forEach((w) => {
-      const sorted = sort(w);
-      const group = groups.get(sorted) || [];
-      groups.set(sorted, [...group, w]); // we mutate the value with the arrays
-    });
-
-    return Array.from(groups.values());
-  }
-
-  console.log(
-    sortedAna(["east", "cars", "acre", "arcs", "teas", "eats", "race"])
-  );
-
-  const sortedArray = array.map((word) => word.split("").sort().join(""));
-  const objArray = sortedArray.map((word) => {
-    var freq = {};
-    for (var i = 0; i < word.length; i++) {
-      var character = word.charAt(i);
-      if (freq[character]) {
-        freq[character]++;
-      } else {
-        freq[character] = 1;
-      }
-    }
-    return freq;
+function sortedAna(arr) {
+  const groups = new Map();
+  arr.forEach((w) => {
+    const sorted = sort(w);
+    const group = groups.get(sorted) || [];
+    groups.set(sorted, [...group, w]); // we mutate the value with the arrays
   });
 
-  console.log("TESTING objArray ", objArray);
-
-  //filter hashmaps
-  const result = [];
-  for (let i = 0; i < objArray.length; i++) {
-    const group = hashArr.filter;
-  }
-
-  return result;
+  return Array.from(groups.values());
 }
 
 console.log(
-  anagrammer(["east", "cars", "acre", "arcs", "teas", "eats", "race"])
+  sortedAna(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race'])
 );
 
+
 // 7
-// main();
+main();

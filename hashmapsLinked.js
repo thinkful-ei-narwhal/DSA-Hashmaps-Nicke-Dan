@@ -1,3 +1,6 @@
+const LL = require('./LL');
+const LinkedList = require('./LL');
+
 class HashMapLinked {
   constructor(initialCapacity = 8) {
     this.length = 0;
@@ -17,10 +20,19 @@ class HashMapLinked {
 
   get(key) {
     const index = this._findSlot(key);
+
     if (this._hashTable[index] === undefined) {
-      throw new Error("Key error");
+      throw new Error('Key error');
     }
-    return this._hashTable[index].value;
+
+    let ll = this._hashTable[index].value;
+    for (const node of ll) {
+      if (node.value.key === key){
+        return node.value.value;
+      } else {
+        return null;
+      }
+    }
   }
 
   set(key, value) {
@@ -33,12 +45,19 @@ class HashMapLinked {
 
     if (!this._hashTable[index]) {
       this.length++;
+      const LinkedL = new LL();
+      this._hashTable[index] = LinkedL.insertFirst({
+        key,
+        value
+      }, null);
+    } else {
+      this._hashTable[index].insertLast({
+        key,
+        value
+      });
     }
-    this._hashTable[index] = {
-      key,
-      value,
-      DELETED: false,
-    };
+    
+
   }
 
   // needs to delete from linked list if it finds it but not the list itself
@@ -46,29 +65,26 @@ class HashMapLinked {
     const index = this._findSlot(key);
     const slot = this._hashTable[index];
     if (slot === undefined) {
-      throw new Error("Key error");
+      throw new Error('Key error');
     }
-    slot.DELETED = true;
+
+
+    //slot.DELETED = true;
+
+    for (const node of slot) {
+      if (node.value.key === key){
+        slot.remove(node);
+      }
+    }
     this.length--;
     this._deleted++;
   }
 
   _findSlot(key) {
     const hash = HashMapLinked._hashString(key);
-    const start = hash % this._capacity;
-    //needs to place a linked list if it doesn't exist or add to one
-    //return index
-
-    return index;
-
-    // for (let i = start; i < start + this._capacity; i++) {
-    //   const index = i % this._capacity;
-    //   const slot = this._hashTable[index];
-    //   if (slot === undefined || (slot.key === key && !slot.DELETED)) {
-    //     return index;
-    //   }
-    // }
+    return hash % this._capacity;
   }
+
 
   _resize(size) {
     const oldSlots = this._hashTable;
