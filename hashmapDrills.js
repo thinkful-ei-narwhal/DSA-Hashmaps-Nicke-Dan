@@ -24,7 +24,7 @@ function main() {
   // -------- linked hashmaps
   HashMapLinked.MAX_LOAD_RATIO = 0.5;
   HashMapLinked.SIZE_RATIO = 3;
-  const lotr = new HashmapLinked();
+  const lotr = new HashMapLinked();
   lotr.set("Hobbit", "Bilbo");
   lotr.set("Hobbit", "Frodo");
   lotr.set("Wizard", "Gandalf");
@@ -49,7 +49,7 @@ function removeDup(str) {
   // I HATE THIS SOLUTION, THERE IS NO WAY THIS IS RIGHT.
   HashMap.MAX_LOAD_RATIO = 0.5;
   HashMap.SIZE_RATIO = 3;
-  const hash = new Hashmap();
+  const hash = new HashMap();
 
   let final = "";
   for (let i = 0; i < str.length; i++) {
