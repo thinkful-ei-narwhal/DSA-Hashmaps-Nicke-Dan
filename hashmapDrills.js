@@ -27,4 +27,26 @@ function main() {
   //capacity is 24
 }
 
+// 2) It outputs 20, 10.  Each time the key gets overwritten with a new value
+
+// 3) https://imgur.com/a/rvRFuvs
+
+// 4)
+
+function removeDup(str) {
+  HashMap.MAX_LOAD_RATIO = 0.5;
+  HashMap.SIZE_RATIO = 3;
+  const hash = new Hashmaps();
+
+
+  for (let i = 0; i < str.length; i++) {
+    
+  }
+
+  return final;
+  
+}
+
+console.log(removeDup('google'));
+
 main();
