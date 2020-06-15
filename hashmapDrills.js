@@ -33,14 +33,20 @@ function main() {
 
 // 4)
 
-function removeDup(str) {
+function removeDup(str) { // I HATE THIS SOLUTION, THERE IS NO WAY THIS IS RIGHT.
   HashMap.MAX_LOAD_RATIO = 0.5;
   HashMap.SIZE_RATIO = 3;
   const hash = new Hashmaps();
 
-
+  let final = '';
   for (let i = 0; i < str.length; i++) {
-    
+    try {
+      hash.get(str[i]);
+    }
+    catch (e) {
+      hash.set(str[i], i);
+      final += str[i];
+    }
   }
 
   return final;
@@ -48,5 +54,43 @@ function removeDup(str) {
 }
 
 console.log(removeDup('google'));
+console.log(removeDup('google all that you think can think of'));
+
+// 5)
+
+function permPal(str) {
+  HashMap.MAX_LOAD_RATIO = 0.5;
+  HashMap.SIZE_RATIO = 3;
+  const hash = new Hashmaps();
+
+  for (let i = 0; i < str.length; i++) {
+    try {
+      hash.get(str[i]);
+      let val = hash.get(str[i]);
+      hash.set(str[i], val + 1);
+    }
+    catch (e) {
+      hash.set(str[i], 1);
+    }
+  }
+
+  let counter = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (hash.get(str[i]) % 2 === 1){
+      counter ++;
+    }
+  }
+  return (counter < 2);
+}
+
+console.log(permPal('north'));
+
+
+// 6)
+
+
+
+
+
 
 main();
